@@ -10,6 +10,8 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(PORT, () => console.log("Category-service is Running"));
+    app.listen(PORT, () =>
+      console.log("Category-service is Running in",PORT)
+    );
   })
   .catch((error) => console.log(error));

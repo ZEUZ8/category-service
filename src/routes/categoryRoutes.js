@@ -1,4 +1,8 @@
 const { Router } = require("express");
+const { addCategory } = require("../controllers/category/create");
+const { getCategory } = require("../controllers/category/getting");
+const { addSubCategory } = require("../controllers/subCategory/create");
+const { getSubCategory } = require("../controllers/subCategory/getting");
 
 const router = Router();
 
@@ -8,12 +12,12 @@ router.get("/", (re, res) => {
 });
 
 
-// router.post("/admin/category", addCategory);
-// router.get("/admin/category", getCategory);
+router.post("/admin/category", addCategory);
+router.get("/admin/category", getCategory);
 
-// router.post("/admin/subCategory", addSubCategory);
-// router.get("/admin/subCategory", (req, res) => res.status(200).json({ msg: "gottd teh cfunction" }));
-// router.get("/admin/subCategory/:id", getSubCategory);
+router.post("/admin/subCategory", addSubCategory);
+router.get("/admin/subCategory", (req, res) => res.status(200).json({ msg: "gottd teh cfunction" }));
+router.get("/admin/subCategory/:id", getSubCategory);
 
 
 
