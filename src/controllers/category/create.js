@@ -6,6 +6,7 @@ const addCategory = async (req, res) => {
 
     /*checking if there is any existing Category in the name then we are
     returning warning for changing it to prevent the upcoming conflict */
+    console.log(categoryName, description,'the value', isActive, "the body");
     const existingCategory = await Category.findOne({ categoryName });
 
     if (existingCategory) {
@@ -28,6 +29,5 @@ const addCategory = async (req, res) => {
     return res.status(500).json({ msg: "error at adding Category" });
   }
 };
-
 
 module.exports = { addCategory };
