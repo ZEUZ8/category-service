@@ -27,20 +27,20 @@ const categorySchema = new mongoose.Schema(
 );
 
 categorySchema.pre("save", async function (next) {
-  if(this.isModified('categoryName') || this.isNew){
-    let slug = slugify(this.categoryName, {lower:true, strict:true})
-    let existingCategory = await mongoose.model("Category").findOne({slug})
+  if (this.isModified("categoryName") || this.isNew) {
+    let slug = slugify(this.categoryName, { lower: true, strict: true });
+    let existingCategory = await mongoose.model("Category").findOne({ slug });
 
     let count = 1;
-    while(existingCategory){
-      slug = `${slug}-${count}`
-      existingCategory = await mongoose.model("Category").findOne({slug})
-      count++
+    while (existingCategory) {
+      slug = `${slug}-${count}`;
+      existingCategory = await mongoose.model("Category").findOne({ slug });
+      count++;
     }
 
-    this.slug = slug
+    this.slug = slug;
   }
-  next()
+  next();
 });
 
 const Category = mongoose.model("Category", categorySchema);

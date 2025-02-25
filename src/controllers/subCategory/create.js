@@ -1,4 +1,4 @@
-const SubCategory = require("../../models/subCategory")
+const SubCategory = require("../../models/subCategory");
 
 const addSubCategory = async (req, res) => {
   try {
@@ -20,11 +20,14 @@ const addSubCategory = async (req, res) => {
         parentId,
         isActive,
       });
-
       //Save SubCategory to database
       await newsubCategory.save();
-
-      return res.status(201).json({ msg: "SubCategory created successfully" });
+      return res
+        .status(201)
+        .json({
+          msg: "SubCategory created successfully",
+          subCategory: newsubCategory,
+        });
     }
   } catch (err) {
     console.log(err, " consoling in the error ");
@@ -32,5 +35,4 @@ const addSubCategory = async (req, res) => {
   }
 };
 
-
-module.exports = { addSubCategory};
+module.exports = { addSubCategory };
